@@ -1,7 +1,5 @@
-/* Enter your solutions in this file */
 #include <stdio.h>
 #include <math.h>
-#include <iostream>
 using namespace std;
 
 int min(int arr[], int n)
@@ -57,36 +55,28 @@ int mode (int arr[], int n)
   return j;
 }
 
-int factors(int n , int a[])
+
+int factors(int n, int arr[])
 {
-	int count=0;
-	for(int i=0;i<100;i++)
-	{
-		while (n%2 == 0) 
-    { 
-        a[i]=2;
-		count++;
-		i=i+1; 
-        n = n/2; 
-    }  
-    for (int j = 3; j<=sqrt(n); j=j+2) 
-    { 
-        while (n%j == 0) 
-        { 
-           a[i]=j;
-           count++;
-           i++;
-            n = n/j; 
-        } 
-    } 
-    if (n > 2)
+  int a=n;
+  int i=0;
+  while (a%2==0)
+  {
+    arr[i]=2;
+    ++i;
+    a/=2;
+  }
+  int f=sqrt(a);
+  for (int j=3;j<f;j+=2)
+  {
+    while (a%j==0)
     {
-        a[i]=n;
-        count++;
-        break;
-	}
+        arr[i]=j;
+        ++i;
+        a/=j;
+    }
+    if (a==1)
+      break;      
+  }
+  return i;
 }
-	return count;
-}
-  
-  
