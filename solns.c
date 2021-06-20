@@ -1,94 +1,85 @@
 #include <stdio.h>
 #include <math.h>
-int max(int [], int);
-int min(int [], int);
-float average(int [], int);
-int mode(int [], int);
-int factors(int, int []);
+#include <iostream>
+using namespace std;
 
-int max(int a[],int x)
+int min(int arr[], int n)
 {
-  int maxi=a[0];
-  for(int i=0;i<x;i++)
+  int min =arr[0];
+  for (int i=1; i<n;i++)
   {
-    if(a[i]>maxi)
-      maxi=a[i];
+    if (arr[i]<min)
+      min=arr[i];   
   }
-  return maxi;
+  return min;
 }
 
-int min(int a[],int x)
+int max(int arr[], int n)
 {
-	int mini=a[0];
-	for(int i=0;i<x;i++)
-	{
-		if(a[i]<mini)
-		mini=a[i];
-	}
-	return mini;
-}
-
-float average(int a[],int x)
-{
-	int sum=0;
-	for(int i=0;i<x;i++)
-	{
-		sum=sum+a[i];
-	}
-	float avg=(float) sum/x;
-	return avg;
-}
-
-int mode(int a[],int x)
-{
-	int b[x];
-    for(int i=0;i<x;i++)
-    {
-    	int count=0;
-    	for(int j=0;j<x;j++)
-    	{
-    		if(a[i]==a[j])
-    		count++;
-		}
-		b[i]=count;
-	}
-	int maxi=a[0],flag=b[0];
-  for(int i=0;i<x;i++)
+  int max =arr[0];
+  for (int i=1; i<n;i++)
   {
-    if(b[i]>flag)
-      maxi=a[i];
+    if (arr[i]>max)
+      max=arr[i];   
   }
-  return maxi;
+  return max;
 }
 
-int factors(int n , int a[])
+float average(int arr[], int n)
 {
-	int count=0;
-	for(int i=0;i<100;i++)
-	{
-		while (n%2 == 0) 
-    { 
-        a[i]=2;
-		count++;
-		i=i+1; 
-        n = n/2; 
-    }  
-    for (int j = 3; j<=sqrt(n); j=j+2) 
-    { 
-        while (n%j == 0) 
-        { 
-           a[i]=j;
-           count++;
-           i++;
-            n = n/j; 
-        } 
-    } 
-    if (n > 2)
+  float avg=0;
+  for (int i=0; i<n;i++)
+    {avg+=arr[i];}
+  avg=(float)avg/(float)n;
+  return avg;
+}
+
+
+int mode (int arr[], int n)
+{
+  int max1=max(arr,n);
+  int ar[max1]={0};
+  for (int i=0; i<n; i++)
+  {
+    ar[arr[i]]++;
+  }
+  int maxxx=ar[0];
+  int j=0;
+  for (int k=1; k<max1;k++)
+  { 
+    if(ar[k]>maxxx)
     {
-        a[i]=n;
-        count++;
-        break;
-	}
+      maxxx=ar[k];
+      j=k;
+    }
+  }
+  return j;
 }
-	return count;
+
+
+int factors(int n, int arr[])
+{
+  int a=n;
+  int i=0;
+  while (a%2==0)
+  {
+    arr[i]=2;
+    ++i;
+    a/=2;
+  }
+  int f=sqrt(a);
+  for (int j=3;j<f;j+=2)
+  {
+    while (a%j==0)
+    {
+        arr[i]=j;
+        ++i;
+        a/=j;
+    }
+    if (a==1)
+      break;      
+  }
+  return i;
 }
+ 
+ 
