@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <math.h>
-#include <iostream>
-using namespace std;
 
 int min(int arr[], int n)
 {
