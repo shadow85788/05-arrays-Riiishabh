@@ -3,24 +3,24 @@
 
 int min(int arr[], int n)
 {
-  int min =arr[0];
+  int min1 =arr[0];
   for (int i=1; i<n;i++)
   {
     if (arr[i]<min)
-      min=arr[i];   
+      min1=arr[i];   
   }
-  return min;
+  return min1;
 }
 
 int max(int arr[], int n)
 {
-  int max =arr[0];
+  int max1 =arr[0];
   for (int i=1; i<n;i++)
   {
     if (arr[i]>max)
-      max=arr[i];   
+      max1=arr[i];   
   }
-  return max;
+  return max1;
 }
 
 float average(int arr[], int n)
